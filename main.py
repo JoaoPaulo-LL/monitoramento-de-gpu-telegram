@@ -55,14 +55,19 @@ def home():
 def run_flask():
     app.run(host='0.0.0.0', port=8080)
 
-# --- Thread para rodar o Flask em paralelo ---
-threading.Thread(target=run_flask).start()
+# --- Função para rodar o bot ---
+def run_bot():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(start_bot())
 
-# --- Loop principal do bot ---
-async def main():
+async def start_bot():
     print("👀 Monitorando grupos... Pressione Ctrl+C para parar.")
     await client.start()
+    enviar_mensagem_telegram("✅ Bot iniciado com sucesso e está monitorando grupos!")
     await client.run_until_disconnected()
 
-# --- Executa ---
-asyncio.run(main())
+# --- Inicia o Flask e o Bot em threads separadas ---
+if __name__ == "__main__":
+    threading.Thread(target=run_flask).start()
+    threading.Thread(target=run_bot).start()
