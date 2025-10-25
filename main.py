@@ -1,6 +1,7 @@
 from telethon import TelegramClient, events
 import asyncio
 import requests
+import os
 
 # --- Configurações Telegram API ---
 api_id = int(os.getenv("API_ID"))
