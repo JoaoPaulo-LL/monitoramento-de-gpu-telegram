@@ -69,5 +69,9 @@ async def start_bot():
 
 # --- Inicia o Flask e o Bot em threads separadas ---
 if __name__ == "__main__":
-    threading.Thread(target=run_flask).start()
-    threading.Thread(target=run_bot).start()
+    threading.Thread(target=run_flask, daemon=True).start()
+    threading.Thread(target=run_bot, daemon=True).start()
+
+    # Mantém o processo principal vivo
+    while True:
+        pass
