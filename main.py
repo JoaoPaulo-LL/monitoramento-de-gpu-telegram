@@ -3,12 +3,12 @@ import asyncio
 import requests
 
 # --- Configurações Telegram API ---
-api_id = 22506763                 # Substitua pelo seu api_id
-api_hash = '6973c935a3f68e503b58996a0b004105'   # Substitua pelo seu api_hash
+api_id = int(os.getenv("API_ID"))
+api_hash = os.getenv("API_HASH")
 
 # --- Configurações do BOT ---
-bot_token = '8270473832:AAGTLN6W_rsHfBiX8jP_gHG6arblgBYI1UM'  # Token do BotFather
-chat_id = 1807794970  # Seu ID pessoal (do @userinfobot)
+bot_token = os.getenv("BOT_TOKEN")
+chat_id = int(os.getenv("CHAT_ID"))
 
 # --- Palavras que você quer monitorar ---
 keywords = [
